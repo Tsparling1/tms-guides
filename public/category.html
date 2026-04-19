@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Category | TMS Solutions Member Guides</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a class="header-brand" href="/">
+      <div class="logo-mark">TMS</div>
+      <div class="brand-text">
+        <div class="brand-name">TMS Solutions</div>
+        <div class="brand-sub">Member Guides</div>
+      </div>
+    </a>
+    <nav class="header-nav">
+      <a href="/">Home</a>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="/">Home</a>
+      <span>&#8250;</span>
+      <span id="breadcrumb-cat">Loading...</span>
+    </div>
+
+    <!-- Page heading -->
+    <div class="page-title" id="page-title">Loading...</div>
+    <div class="page-subtitle" id="page-subtitle"></div>
+
+    <!-- Search within category -->
+    <div class="search-bar-wrap" style="max-width:420px; margin:0 0 1.5rem;">
+      <span class="search-icon">&#128269;</span>
+      <input
+        type="text"
+        id="guide-search"
+        placeholder="Filter guides..."
+        autocomplete="off"
+      />
+    </div>
+
+    <!-- Guides list -->
+    <div class="guides-list" id="guides-list">
+      <div class="loading">Loading guides...</div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 TMS Solutions. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function formatCategoryName(id) {
+      return id.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    }
+
+    function getCategoryParam() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('cat') || '';
+    }
+
+    async function loadGuides() {
+      const catId = getCategoryParam();
+      if (!catId) {
+        document.getElementById('guides-list').innerHTML =
+          '<div class="empty-state"><div class="empty-icon">&#10060;</div><strong>No category specified.</strong></div>';
+        return;
+      }
+
+      const catName = formatCategoryName(catId);
+      document.title = `${catName} | TMS Solutions Member Guides`;
+      document.getElementById('breadcrumb-cat').textContent = catName;
+      document.getElementById('page-title').textContent = catName;
+
+      const list = document.getElementById('guides-list');
+
+      try {
+        const res = await fetch(`/api/guides/${encodeURIComponent(catId)}`);
+        const data = await res.json();
+
+        if (!data.guides.length) {
+          document.getElementById('page-subtitle').textContent = 'No guides available yet.';
+          list.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon">&#128194;</div>
+              <strong>No guides in this category</strong>
+              <p>Add PDF files to <code>public/guides/${catId}/</code> to populate this section.</p>
+            </div>`;
+          return;
+        }
+
+        document.getElementById('page-subtitle').textContent =
+          `${data.guides.length} guide${data.guides.length !== 1 ? 's' : ''} available`;
+
+        list.innerHTML = data.guides.map(guide => `
+          <div class="guide-item" data-name="${guide.name.toLowerCase()}">
+            <div class="guide-icon">&#128196;</div>
+            <div class="guide-info">
+              <div class="guide-name">${guide.name}</div>
+              <div class="guide-meta">PDF Document</div>
+            </div>
+            <div class="guide-actions">
+              <a class="btn btn-outline" href="${guide.url}" target="_blank" rel="noopener">
+                &#128065; View
+              </a>
+              <a class="btn btn-primary" href="${guide.url}" download="${guide.file}">
+                &#11123; Download
+              </a>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        list.innerHTML = '<div class="empty-state">Failed to load guides.</div>';
+      }
+    }
+
+    // Filter guides
+    document.getElementById('guide-search').addEventListener('input', function () {
+      const q = this.value.toLowerCase();
+      document.querySelectorAll('.guide-item').forEach(item => {
+        item.style.display = item.dataset.name.includes(q) ? '' : 'none';
+      });
+    });
+
+    loadGuides();
+  </script>
+</body>
+</html>

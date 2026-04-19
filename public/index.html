@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Business Resource Library | TMS Solutions Group</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FAFAF7;
+      --navy: #1B2B5E;
+      --navy-dark: #132045;
+      --gold: #B8860B;
+      --gold-light: #D4A017;
+      --white: #ffffff;
+      --text: #2c2c2c;
+      --text-muted: #6b6b6b;
+      --border: #e8e4d9;
+    }
+
+    body {
+      background: var(--cream);
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--navy);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 18px;
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 1px;
+      flex-shrink: 0;
+    }
+    .brand-name {
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .brand-sub {
+      color: var(--gold-light);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .header-contact {
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      text-align: right;
+    }
+    .header-contact a { color: var(--gold-light); text-decoration: none; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #243670 100%);
+      color: white;
+      padding: 60px 40px 50px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .gold-bar {
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      margin: 16px auto;
+      border-radius: 2px;
+    }
+    .hero p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.85);
+      max-width: 600px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+    .stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── PILLAR NAV ── */
+    .pillar-nav {
+      background: var(--white);
+      border-bottom: 2px solid var(--border);
+      padding: 14px 40px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .pillar-nav a {
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .pillar-nav a:hover {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+    }
+
+    /* ── PILLAR SECTION ── */
+    .pillar-section {
+      margin-bottom: 56px;
+    }
+    .pillar-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--border);
+    }
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--navy);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .pillar-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .pillar-count {
+      margin-left: auto;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 12px;
+    }
+
+    /* ── CARD GRID ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    /* ── GUIDE CARD ── */
+    .guide-card {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid var(--border);
+    }
+    .guide-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(27,43,94,0.14);
+    }
+    .thumb-wrap {
+      position: relative;
+      background: #f0eeea;
+      aspect-ratio: 8.5 / 11;
+      overflow: hidden;
+    }
+    .thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .thumb-wrap .thumb-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #e8e4d9 0%, #f5f2ec 100%);
+      color: var(--navy);
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      padding: 12px;
+      line-height: 1.4;
+    }
+    .thumb-fallback-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+    .card-body {
+      padding: 14px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.4;
+      margin-bottom: 12px;
+      flex: 1;
+    }
+    .btn-download {
+      display: block;
+      text-align: center;
+      background: var(--gold);
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 9px 12px;
+      border-radius: 8px;
+      transition: background 0.2s;
+      letter-spacing: 0.3px;
+    }
+    .btn-download:hover {
+      background: var(--gold-light);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy-dark);
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    footer a { color: var(--gold-light); text-decoration: none; }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: white;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      header { padding: 14px 20px; }
+      .hero { padding: 40px 20px 36px; }
+      .pillar-nav { padding: 12px 16px; }
+      main { padding: 32px 16px 48px; }
+      .card-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+      .header-contact { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="header-brand" href="/">
+    <div class="logo-mark">TMS</div>
+    <div>
+      <div class="brand-name">TMS Solutions Group</div>
+      <div class="brand-sub">Business Resource Library</div>
+    </div>
+  </a>
+  <div class="header-contact">
+    <a href="mailto:tom@tms-solutions-group.com">tom@tms-solutions-group.com</a><br>
+    386-387-8620
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Member Resource Library</div>
+  <h1>Business Resource Library</h1>
+  <div class="gold-bar"></div>
+  <p>Expert guides across 8 business pillars — instantly downloadable, built to help your business save money, grow revenue, and operate smarter.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">58</div><div class="stat-label">Guides</div></div>
+    <div class="stat"><div class="stat-num">8</div><div class="stat-label">Pillars</div></div>
+    <div class="stat"><div class="stat-num">Free</div><div class="stat-label">Downloads</div></div>
+  </div>
+</section>
+
+<!-- PILLAR NAV -->
+<nav class="pillar-nav">
+  <a href="#cost-reduction">Cost Reduction</a>
+  <a href="#tax-benefits">Tax &amp; Benefits</a>
+  <a href="#funding-capital">Funding &amp; Capital</a>
+  <a href="#health-coverage">Health Coverage</a>
+  <a href="#technology">Technology &amp; Automation</a>
+  <a href="#marketing">Marketing &amp; Growth</a>
+  <a href="#hr-operations">HR, Operations &amp; Legal</a>
+  <a href="#banking-benefits">Banking &amp; Personal Benefits</a>
+</nav>
+
+<!-- MAIN -->
+<main id="main-content"></main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">TMS Solutions Group</div>
+  <div><a href="mailto:tom@tms-solutions-group.com">tom@tms-solutions-group.com</a> &nbsp;|&nbsp; <a href="https://tms-solutions-group.com">tms-solutions-group.com</a> &nbsp;|&nbsp; 386-387-8620</div>
+  <div style="margin-top:8px;font-size:12px;opacity:0.5">&copy; 2026 TMS Solutions Group. All rights reserved.</div>
+</footer>
+
+<script>
+  function thumbUrl(id) {
+    return 'https://drive.google.com/thumbnail?id=' + id + '&sz=w400';
+  }
+  function pdfUrl(id) {
+    return 'https://drive.google.com/uc?export=download&id=' + id;
+  }
+
+  const pillars = [
+    {
+      id: 'cost-reduction',
+      icon: '💰',
+      title: 'Cost Reduction',
+      guides: [
+        { n: '03', title: 'WEX Fleet Card',         pdf: '1va_k6Je4frc0g0qRr8Sjfa9djWWIptNo', thumb: '1d6TGx3yA680-ZSi0eH_Asp6y0uGbwDdT' },
+        { n: '04', title: 'FPL Energy Rebates',      pdf: '1dsFWYaDUlI8ZH1N498QQ33SgzOAYxahT', thumb: '1N9S7G5_qTupEsv3XPMitkvFELuOrHPEW' },
+        { n: '05', title: 'Amazon Business',         pdf: '1qM--dS-6gqdytFMfJxsX4Goe6ybmOuof', thumb: '1C53IUGhSV5iOS0MxWFQliEBhCeMllTdW' },
+        { n: '06', title: 'Windfall GPO',            pdf: '1VdRjFg5E2jM3kaNXo759wduyy09uilz2', thumb: '1fguIHeI0PXvbPnrZFQChdEliiZhWfUOl' },
+        { n: '07', title: 'Mint Mobile',             pdf: '1GkaHcNnAoFlHC_p4yd5ZrzntcRnB0eSW', thumb: '1SaEDHW3OgYmF3DWIMna37ZEVbPxUQYcX' },
+        { n: '46', title: 'Upside Cashback',         pdf: '1T7h0487EpBFB5yyeARYTIlWPrRIvHWB1', thumb: '1HIXXRPjk_oqXTeEO9FcehgEzv_Xp-QPZ' },
+        { n: '53', title: 'Subscription Audit',      pdf: '10HSh0CzUKAJpmVydOemQ31AQ_o1KGfae', thumb: '1kTs19gUIb120lZUPShcMGf4It564kytD' },
+      ]
+    },
+    {
+      id: 'tax-benefits',
+      icon: '📋',
+      title: 'Tax & Benefits',
+      guides: [
+        { n: '01', title: 'Section 125 POP Plan',   pdf: '1cfbd8Xrtwd2wmy30rOHgNaWYfBUDVjf5', thumb: '1Jv3ZnKjot9nQC1NEeOFAVbe_jnM81hoU' },
+        { n: '02', title: 'WIMPER Program',          pdf: '1oUpw4D6wBpJ7OtlmmepWbCWwg2kyW3im', thumb: '11KPy62_igaAwbQxSEJbf52F44G_bHIrE' },
+        { n: '16', title: 'WOTC Tax Credit',         pdf: '1Vpt6zJA_S_xt_lRuSTdFykvpa_mB8fi3', thumb: '12GibvCVZK2BHaKudtI56dakJbrvlnpQQ' },
+      ]
+    },
+    {
+      id: 'funding-capital',
+      icon: '🏦',
+      title: 'Funding & Capital',
+      guides: [
+        { n: '09', title: 'GoKapital Funding',       pdf: '11GGbRG-lqXYghnR_EMqq1G1SdXNBYLnD', thumb: '1RYoZ51rVANBfkVNegdrNSoZ0MPrXatNY' },
+        { n: '10', title: 'SBA 7(a) Loan',           pdf: '1Mq9RfCvq27zdrwlnFf0KHZk9ULSDvhoj', thumb: '1TwKYXOLDBmei6Fm2arIsqOUwt_bnhXY1' },
+        { n: '11', title: 'SBA Microloan',           pdf: '1vGkEPesEQrnH5lPwW-xYE4gA26Tad6ZY', thumb: '1oLrEdDVFs_jrDbkFWafK6cDIVIj9dmQ6' },
+        { n: '12', title: 'Florida DEO Grants',      pdf: '1lE1aeyEQyUQwUb8K4u5m9GZ1noR_EKI3', thumb: '1KIYS42a_RKbSPBtqu5eLcD5udq_T_r41' },
+        { n: '13', title: 'SSBCI Florida',           pdf: '1bvys3q3N3irTmymTbgqIFh0Jbu1GZXr3', thumb: '16_BiSEGMm5uqbTjgGTihR8a0UgRDHrUq' },
+        { n: '55', title: 'Grants.gov',              pdf: '14xR-AfgqEeZvmQnLCw9_86yBzns2WreW', thumb: '1H_ny0dO4ewNNNJYL7j8oEHr4WFKt7ew1' },
+        { n: '57', title: 'SBA 504 Loan',            pdf: '1X--xpLAp_u41jvZpmgD0dpA-bxWyJe9g', thumb: '1doilYjlUpemw58uy_athNsfFy4yjAzEk' },
+        { n: '58', title: 'Microloan CDFI',          pdf: '1Iu3r0jfccM05-PVP6bRZOuaSgaMu2MpT', thumb: '1Sw-Z-UFWHUb0bovvxmwBQMHiQiAdFKWP' },
+      ]
+    },
+    {
+      id: 'health-coverage',
+      icon: '🏥',
+      title: 'Health Coverage Options',
+      guides: [
+        { n: '17', title: 'Health Share Overview',          pdf: '1GOuOnPtcpxBO74Qj0LH--di43pMFzy5k', thumb: '1cQ5e54JReiPffvRrSL96DUq-03_2zQFd' },
+        { n: '18', title: 'Liberty HealthShare',            pdf: '1WxgqJLcPMUCBHUY5xr42G4HzbrTgxeFO', thumb: '1zhZqxDCj1GjdB5guNJ3NVQmCOpDj_6-v' },
+        { n: '19', title: 'Sedera Health',                  pdf: '1xVa2AFAvAISgn1ApyL4OnKLba5Bqlthr', thumb: '1f9ybOMd6iV31TwUdjbv6bvKkveT-ayIc' },
+        { n: '20', title: 'Christian Healthcare Ministries', pdf: '1rMVD9eMx4J_rmz5almQ2UyshlDalDwk_', thumb: '1R1k4c-kXQRHbMITH9oYeYmTBx_KEzTtc' },
+        { n: '21', title: 'Zion Health',                    pdf: '1IYB5DJ92QHkNMAed4Uy6Q4TRrYB09coM', thumb: '1wxH38K_nErJiI6ZspZiZeoSxB-c5_CtW' },
+        { n: '22', title: 'Knew Health',                    pdf: '1T9s3dKuHnY6bt_mW2J52SF3Qj9KT2JQ-', thumb: '10vYjuLt2E3eRQhI_nD5lO9FGgO3sccIL' },
+        { n: '23', title: 'OneShare Solidarity',            pdf: '1IztuLwi2ovVXnN7x6Y5NRJR46kTSM6am', thumb: '1_JDrY5Fy3KeHHv7mMSPnHQcijch9a1SL' },
+        { n: '24', title: 'Health Share vs. Insurance',     pdf: '1-049PoyMhiQH66H5jPzeTtSxRvGgrtOI', thumb: '1EBTD2TLZCt0aGs16buYu_OY1z9yRZIhe' },
+        { n: '25', title: 'GoodRx & Telehealth',            pdf: '1lzX0LUu7WLpmLOghvAcMVoW0CY1JHXwG', thumb: '1-az9phb3Bz9n79Wg-hDk4kDcmbp_84yo' },
+      ]
+    },
+    {
+      id: 'technology',
+      icon: '💻',
+      title: 'Technology & Automation',
+      guides: [
+        { n: '08', title: 'Software Audit',          pdf: '1SdEGwWpSyvHIx5EBvwkBfe0QGpQFoQ91', thumb: '1x4VRmDMOU9LwX6st0L6nJGtl3w3UQVKV' },
+        { n: '34', title: 'AI for Business',         pdf: '1knbk_tYt3BIjfLTQ_utdvLe3G2zJeWfy', thumb: '1yx4_0AC3EFySaXvOwz08OyyAC1BN0Ofh' },
+        { n: '35', title: 'ChatGPT for Business',    pdf: '1eCtBuvVy4VqpfdHYHeSC0DlL2Eqmfs9k', thumb: '1lfWLABl1dgwduHDeJiV3eMJj53ju1TJu' },
+        { n: '36', title: 'Google Workspace',        pdf: '1_tPiqz-AhzGEUJW40vLNGswpdaAtns42', thumb: '1B1_aU6LFadVQ3fHaRNvQRSvrHJVnLltx' },
+        { n: '37', title: 'Automation Guide',        pdf: '10TRnn70H0P6y5LX4f0LGxwenTCMtL7Cp', thumb: '1fo2hvyaMTjPN8ekuLJ624FXF9NVKaIM7' },
+        { n: '38', title: 'NordLayer Cybersecurity', pdf: '1I_evIXRmvXO5eRWTDP3AIfKZKpkjUaNm', thumb: '1erGhGGpIRycGmazRBv6dN3PijqBDR49E' },
+        { n: '39', title: 'SimpleTexting',           pdf: '1si7vjOAZRJYNAsYbYl95Ss70k79dksVC', thumb: '1ByW-hyAB2suQhVEZdiZ-V8g_4l2RN0t8' },
+      ]
+    },
+    {
+      id: 'marketing',
+      icon: '📣',
+      title: 'Marketing & Growth',
+      guides: [
+        { n: '14', title: 'Government Contracting',   pdf: '17PGoocqgTbf7Rdf4UhOZ9HNbfk9e-J-b', thumb: '1jwB_P8E9UbiLAHlI5F5ULBw5cib_TeoF' },
+        { n: '15', title: 'Customer Reactivation',    pdf: '131l8BwRrrj1pjpqL6-K8YGm7aSi0kGYA', thumb: '1VORuKpj5gl9skIH9I5yPm6j32zJV4cdE' },
+        { n: '40', title: 'AI Social Posting',        pdf: '1Ji_9lsgWxn-3FLa73uBj68h-0BwTSOJT', thumb: '15Mo0L0gVaD0Cxg6CzQqaO-8wY64uDhws' },
+        { n: '41', title: 'Google Business Profile',  pdf: '1EqVz2C0OGDzYqgYmZERPBGYTQu4Eq_Gv', thumb: '1JUIeZJVBgS0U2xqAIIMGQ1gfoAnV075e' },
+        { n: '42', title: 'Review Management',        pdf: '10h4uWQoTo6eojlhs1cXaMgiWx4A3FnZ_', thumb: '1DqKtmedzqHvxH6pJEabWGdjyTKO5VpLj' },
+        { n: '43', title: 'Email Marketing',          pdf: '1eHw-kd4Jjje9mRiax7DEuT-yXrXfJvIg', thumb: '1N5uH_FQpnLqJVk4FhGZj3ZBpSHAU_ul8' },
+        { n: '44', title: 'Local SEO',                pdf: '10aRKV77mMA7OVrz29WxZGubUOETKeDXx', thumb: '1NK88XFyb6Z0mUiiGFsOlxtc9LH5VdjhS' },
+        { n: '47', title: 'Social Media Strategy',    pdf: '1bZplGOiYboDH24JzQQVWoqfZZWn6aOA8', thumb: '1L_oEwJqbe2C6cO3TFtTT_NyFahuzr6YU' },
+      ]
+    },
+    {
+      id: 'hr-operations',
+      icon: '⚙️',
+      title: 'HR, Operations & Legal',
+      guides: [
+        { n: '26', title: 'Gusto Payroll',           pdf: '1jU6f2e8DNcX_CSmEPT8S0VxUeZgQ2-Cm', thumb: '1zFPHxmyBpXtoLWwm4xi3dnwqF7o1ipkD' },
+        { n: '27', title: 'MyHR Concierge',          pdf: '15-CBg6dt2mhxadTskAxhuwt73_BPuQod',  thumb: '13A8HvysP-exrUjl_uHxGJZWTRCWPSk84' },
+        { n: '28', title: 'biBERK Insurance',        pdf: '1BUgHGu5Oe8XFiZzrkjWOEiptNqLcMQgF', thumb: '1_IQrFjGk00Joh2taV8ghXy-jQgRF1iIc' },
+        { n: '29', title: 'Rocket Lawyer',           pdf: '1hR0PgOAl0C6XNO2xXNbc6fYq7oC1sClt', thumb: '1sufKZa5zSi4q-NXJzcgriJDLkMvQMzSH' },
+        { n: '30', title: 'Wave Accounting',         pdf: '1fQmlCNaTeXIYUk2j_2Oy-_cuysDZpVjz', thumb: '1gxvOfyum5ty31gIlWvRiIK_kYKT1CQbh' },
+        { n: '32', title: 'Workers Comp',            pdf: '1O8rM7kuqacv3s5in1aF_KZxwxwg2Yn4w', thumb: '1KwB3Ka5jKVqZRmk8t3vqk5b2iHJHXdhc' },
+        { n: '33', title: 'Compliance Checklist',    pdf: '1de3oY4aHTdrwCIp_s4lLmsECft17Zdum', thumb: '17ve3W6TC2zJSjcFr2pKIWl0K-s5bujT7' },
+        { n: '45', title: 'Shippo Shipping',         pdf: '1h_s1ez_8jGJvQ1bIozerAplMydL1b-Wo', thumb: '1S3Qk_8C23XokpP1zdJeXtHeU3AmggC3g' },
+        { n: '48', title: 'Hiring Guide',            pdf: '1AddSlMpoe43S-k8wsk5Exh77VBtZnjGE', thumb: '1tAslXQmYjn4iZZHDu7l34bu7L6gUnIqA' },
+      ]
+    },
+    {
+      id: 'banking-benefits',
+      icon: '🏛️',
+      title: 'Banking & Personal Benefits',
+      guides: [
+        { n: '31', title: 'Business Credit',           pdf: '1qYRLQU3d2l60m5-aOkjvWBXwicdL8-3F', thumb: '1iHEdmQl37wPGOK8AHN1AXA8AFRAw_xBP' },
+        { n: '49', title: 'Personal Banking',          pdf: '1pVlKvVxiySc0mfszzc2DKOG5bwEoHpFy', thumb: '1WuypqP0KwBHByb5uXOXbiIH4WUkfaxqo' },
+        { n: '50', title: 'Personal Health Coverage',  pdf: '1vmpGyR1PJ32Y_a-hEyQXuknWj24C4NX-', thumb: '1NiStIVCPmDONBkmeV1mh3dE-pGyNcVPE' },
+        { n: '51', title: 'Home Insurance',            pdf: '1fZuIkQP358XgNn7QmsedhP1t0HEO632C', thumb: '1ulMJMP4KNoNciaCLhdtOrKhexagy7O-j' },
+        { n: '52', title: 'Identity Protection',       pdf: '1jjZwzzOANl3i2h7qjZHsMZH_GDyPIrs6', thumb: '1heof3rNgg6reoQeXUGY2xqL_hGOoxFgw' },
+        { n: '54', title: 'Business Credit Report',   pdf: '1KLV4NNo4h1ee4fLppVznDPPdaJtldMhw', thumb: '1ngEuk4mtD8Ydni47c-xLVrvywV7A4dMl' },
+        { n: '56', title: 'Modern Banking',           pdf: '1f8M6WrheCSNXCTzJTSOHAZ-jfo0nQJyF', thumb: '1WaQxItdDBrvTyYvIWLUAzSPVmVPz_MVy' },
+      ]
+    },
+  ];
+
+  function buildCard(guide) {
+    return `
+      <div class="guide-card">
+        <div class="thumb-wrap">
+          <img
+            src="${thumbUrl(guide.thumb)}"
+            alt="${guide.title}"
+            loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+          />
+          <div class="thumb-fallback" style="display:none">
+            <div class="thumb-fallback-icon">📄</div>
+            ${guide.title}
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">${guide.title}</div>
+          <a class="btn-download" href="${pdfUrl(guide.pdf)}" target="_blank" rel="noopener">
+            Download Guide
+          </a>
+        </div>
+      </div>
+    `;
+  }
+
+  function buildPillar(pillar) {
+    return `
+      <section class="pillar-section" id="${pillar.id}">
+        <div class="pillar-header">
+          <div class="pillar-icon">${pillar.icon}</div>
+          <div class="pillar-title">${pillar.title}</div>
+          <div class="pillar-count">${pillar.guides.length} Guides</div>
+        </div>
+        <div class="card-grid">
+          ${pillar.guides.map(buildCard).join('')}
+        </div>
+      </section>
+    `;
+  }
+
+  document.getElementById('main-content').innerHTML = pillars.map(buildPillar).join('');
+</script>
+</body>
+</html>
