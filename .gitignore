@@ -1,3 +1,14 @@
 node_modules/
 .env
 *.log
+.env.*
+node_modules
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+.session_secret
+*.bak
+*.bak.*
+__pycache__
